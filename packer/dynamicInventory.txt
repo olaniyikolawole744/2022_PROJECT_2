@@ -1,0 +1,10 @@
+#!/bin/bash
+
+sudo amazon-linux-extras install ansible2 -y
+sudo yum install git -y
+sudo yum install pip -y
+pip install boto
+#pip install docker 
+
+# create a role with ec2 access 
+# ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook playbook/playbook.yml -i inventory/hosts/ec2.py 

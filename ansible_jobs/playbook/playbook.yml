@@ -1,0 +1,38 @@
+- hosts: all
+  tasks:
+  - name: Example from an Ansible Playbook
+    ansible.builtin.ping:
+
+  - name: Create a directory if it does not exist
+    ansible.builtin.file:
+      path: /etc/some_directory
+      state: directory
+      mode: '0755'
+
+  - name: Install a list of packages with a list variable
+    yum:
+      name: "{{ packages }}"
+    vars:
+      packages:
+        - git
+        - pip
+        - docker
+
+  - name: Install boto package
+    pip:
+      name: "{{ packages2 }}"
+    vars:
+      packages:
+        - boto
+      
+  - name: Start service docker, if not started
+    ansible.builtin.service:
+      name: docker
+      state: started
+
+  - name: clone a dockerfile repo
+    ansible.builtin.git:
+      repo: https://github.com/shegoj/2021-devopstrainingminiproject
+      dest: /tmp/
+  
+  
