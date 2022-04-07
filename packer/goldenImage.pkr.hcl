@@ -1,5 +1,5 @@
-//export PKR_VAR_aws_access_key=AKIA6PTJFZRO24ETGN6C
-// export PKR_VAR_aws_secret_key=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
+//export PKR_VAR_aws_access_key=xxxx
+// export PKR_VAR_aws_secret_key=xxxx
 
 
 variable "aws_access_key" {
