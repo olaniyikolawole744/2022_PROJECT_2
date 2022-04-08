@@ -45,7 +45,7 @@ build {
 
   provisioner "shell" {
     script = "launchFile.txt"
-   }
+  }
 
   provisioner "shell" {
     script = "dynamicInventory.txt"
