@@ -13,6 +13,7 @@ pipeline {
 
         stage('CREATE INFRASTRUCTURE') {
              steps {
+                 sh 'ls'
                 sh 'chmod 755 script2.sh'
                 sh './script2.sh'
                 }
