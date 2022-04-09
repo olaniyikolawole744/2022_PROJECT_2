@@ -21,10 +21,10 @@ pipeline {
 
           stage('PLAY ANSIBLE BOOK.') {
              steps {
-                cd ansible_jobs
-                chmod 755 inventory/hosts/ec2.ini
-                chmod 755 inventory/hosts/ec2.py
-                pip install boto
+                sh 'cd ansible_jobs'
+              sh 'chmod 755 inventory/hosts/ec2.ini'
+               sh 'chmod 755 inventory/hosts/ec2.py'
+              sh  'pip install boto'
      withCredentials([sshUserPrivateKey(credentialsId: 'e1132bff-712f-4ff9-977e-87082ef66837', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
      
          sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --u $username --private-key $private_key playbook/playbook.yml -i inventory/hosts/ec2.py -vvvvv'
