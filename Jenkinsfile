@@ -22,8 +22,8 @@ pipeline {
           stage('PLAY ANSIBLE BOOK.') {
              steps {
                 sh 'cd ansible_jobs'
-              sh 'chmod 755 inventory/hosts/ec2.ini'
-               sh 'chmod 755 inventory/hosts/ec2.py'
+              sh 'chmod 755 ansible_jobs/inventory/hosts/ec2.ini'
+               sh 'chmod 755 ansible_jobs/inventory/hosts/ec2.py'
               sh  'pip install boto'
      withCredentials([sshUserPrivateKey(credentialsId: 'e1132bff-712f-4ff9-977e-87082ef66837', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
      
