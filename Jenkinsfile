@@ -1,4 +1,3 @@
-sudo su - ansible && 
 pipeline {
     agent any
 
