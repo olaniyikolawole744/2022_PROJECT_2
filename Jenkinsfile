@@ -4,8 +4,8 @@ pipeline {
 
     environment {
         
-        ANSIBLE_HOSTS="ansible/inventory/ec2.py"
-        EC2_INI_PATH="ansible/inventory/ec2.ini"
+        ANSIBLE_HOSTS="ansible_jobs/inventory/ec2.py"
+        EC2_INI_PATH="ansible_jobs/inventory/ec2.ini"
         
     }
 
