@@ -13,8 +13,8 @@ pipeline {
         stage('CREATE INFRASTRUCTURE') {
              steps {
                 sh 'ls'
-                sh 'chmod 755 script2.sh'
-                sh './script2.sh'
+                sh 'chmod 755 destroy2.sh'
+                sh './destroy2.sh'
 
                 }
         } 
@@ -27,7 +27,7 @@ pipeline {
               sh  'pip install boto'
      withCredentials([sshUserPrivateKey(credentialsId: 'e1132bff-712f-4ff9-977e-87082ef66837', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
      
-         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --u $username --private-key $private_key playbook/playbook.yml -i inventory/hosts/ec2.py -vvvvv'
+         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --u $username --private-key $private_key ansible_jobs/playbook/playbook.yml -i ansible_jobs/inventory/hosts/ec2.py -vvvvv'
  
 }
                 }
