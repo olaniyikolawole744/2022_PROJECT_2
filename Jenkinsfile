@@ -18,11 +18,19 @@ pipeline {
 
                 }
         } 
-        
-stage('PLAY ANSIBLE BOOK.') {
+
+          stage('PLAY ANSIBLE BOOK.') {
              steps {
-                sh 'chmod 755 ansible.sh'
-                sh './ansible.sh'}
+                cd ansible_jobs
+                chmod 755 inventory/hosts/ec2.ini
+                chmod 755 inventory/hosts/ec2.py
+                pip install boto
+     withCredentials([sshUserPrivateKey(credentialsId: 'e1132bff-712f-4ff9-977e-87082ef66837', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
+     
+         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --u $username --private-key $private_key playbook/playbook.yml -i inventory/hosts/ec2.py -vvvvv'
+ 
+}
+                }
         } 
           
     }
