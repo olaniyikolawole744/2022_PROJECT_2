@@ -15,7 +15,7 @@ cd httpd_server
 terraform init
 terraform fmt
 terraform validate
-terraform plan "-var-file=variableValues.tfvars"
+#terraform plan "-var-file=variableValues.tfvars"
 terraform apply "-var-file=variableValues.tfvars" --auto-approve
 
 #CREATE TOMCAT SERVERS
@@ -24,7 +24,7 @@ cd tomcat_server
 terraform init
 terraform fmt
 terraform validate
-terraform plan "-var-file=variableValues.tfvars"
+#terraform plan "-var-file=variableValues.tfvars"
 terraform apply "-var-file=variableValues.tfvars" --auto-approve
 
 #CREATE ELASTIC LOAD BALANCER
@@ -33,7 +33,7 @@ cd elb
 terraform init
 terraform fmt
 terraform validate
-terraform plan "-var-file=variableValues.tfvars"
+#terraform plan "-var-file=variableValues.tfvars"
 terraform apply "-var-file=variableValues.tfvars" --auto-approve
 
 #CREATE DATABASE INSTANCE
@@ -42,5 +42,5 @@ cd rds
 terraform init
 terraform fmt
 terraform validate
-terraform plan "-var-file=variableValues.tfvars"
+#terraform plan "-var-file=variableValues.tfvars"
 terraform apply "-var-file=variableValues.tfvars" --auto-approve
