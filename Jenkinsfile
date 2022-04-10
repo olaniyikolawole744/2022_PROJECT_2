@@ -13,12 +13,12 @@ pipeline {
         stage('CREATE INFRASTRUCTURE') {
              steps {
                 sh 'ls'
-                sh 'chmod 755 script2.sh'
-                sh './script2.sh'
+                sh 'chmod 755 destroy2.sh'
+                sh './destroy2.sh'
                 }
         } 
 
-          stage('PLAY ANSIBLE BOOK.') {
+          stage('PLAY ANSIBLE BOOK..') {
              steps {
             sh 'cd ansible_jobs'
             sh 'chmod 755 ansible_jobs/inventory/hosts/ec2.ini'
