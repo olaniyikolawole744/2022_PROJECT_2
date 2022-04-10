@@ -24,13 +24,11 @@ pipeline {
               sh 'chmod 755 ansible_jobs/inventory/hosts/ec2.ini'
                sh 'chmod 755 ansible_jobs/inventory/hosts/ec2.py'
               sh  'pip install boto'
-     withCredentials([sshUserPrivateKey(credentialsId: 'e1132bff-712f-4ff9-977e-87082ef66837', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
-     
-         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --u $username --private-key $private_key ansible_jobs/playbook/playbook.yml -i ansible_jobs/inventory/hosts/ec2.py -vvvvv'
- 
-}
-                }
-        } 
+         withCredentials([sshUserPrivateKey(credentialsId: 'c959f82d-964f-4b1e-a30f-570c8004a503', keyFileVariable: 'second-key', usernameVariable: 'ansible-user')]) {
+         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --u $ansible-user --private-key $second-key ansible_jobs/playbook/playbook.yml -i ansible_jobs/inventory/hosts/ec2.py -vvvvv'
+         }
+    }
+} 
           
     }
 }
