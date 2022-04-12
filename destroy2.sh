@@ -1,11 +1,11 @@
 #!/bin/bash
 
 #DESTROY DB INSTANCE
-cd rds
-terraform destroy "-var-file=variableValues.tfvars" --auto-approve
+#cd rds
+#terraform destroy "-var-file=variableValues.tfvars" --auto-approve
 
 #DESTROY HTTPD SERVERS
-cd ../
+#cd ../
 cd servers
 cd httpd_server
 terraform destroy "-var-file=variableValues.tfvars" --auto-approve
