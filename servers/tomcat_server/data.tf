@@ -39,7 +39,7 @@ data "aws_ami" "getGoldenImageAMI" {
 
   filter {
     name   = "name"
-    values = ["golden_Ami_Image_With_Ansible_User"]
+    values = ["golden_Ami_Image_With_Ec2_User"]
   }
 
   filter {
