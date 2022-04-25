@@ -2,7 +2,7 @@
 terraform {
   backend "s3" {
     bucket = "lennips-bucket"
-    key    = "training/asg/terraform.tfstates"
+    key    = "training/asg/terraform.tfstate"
     region = "us-east-1"
   }
 }
