@@ -19,3 +19,19 @@ resource "aws_lb_target_group" "createTargetGroupForWebTierELB" {
     Name = "targetGroupForWebTierELB"
   }
 }
+
+module "createAutoscaling" {
+  source                                        = "../asg_module"
+  namePrefixForMachinesCreatedBAutoscalingGroup = var.namePrefixForMachinesCreatedBAutoscalingGroup
+  #ami = var.ami 
+  #ec2InstanceType = var.ec2InstanceType
+  #linuxScriptFileToInstallOnMachineCreatedByAutoscalingGroup = var.linuxScriptFileToInstallOnMachineCreatedByAutoscalingGroup
+  #webServerSecurityGroupId = var.webServerSecurityGroupId
+  minimumNumberOfMachineAutoScalingGroupCanScaleDownTo = var.minimumNumberOfMachineAutoScalingGroupCanScaleDownTo
+  maximumNumberOfMachineAutoScalingGroupCanScaleUpTo   = var.maximumNumberOfMachineAutoScalingGroupCanScaleUpTo
+  numberOfMachinesToExistInIdealCondition              = var.numberOfMachinesToExistInIdealCondition
+  #launchConfigurationName = var.launchConfigurationName
+  #nameOfSubnetsWhereAutoscalingWillCreateMachines = var.nameOfSubnetsWhereAutoscalingWillCreateMachines
+  #autoScalingGroupName = var.autoScalingGroupName
+  albTargetGroupArn = aws_lb_target_group.createTargetGroupForWebTierELB.arn
+}

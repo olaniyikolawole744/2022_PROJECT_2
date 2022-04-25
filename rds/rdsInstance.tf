@@ -16,10 +16,11 @@ provider "aws" {
 
 # Resource to create rds database
 resource "aws_db_instance" "rdsDatabaseTemplate" {
-  availability_zone         = var.availabilityZoneToPlaceDatabase
+  count                     = 2
+  availability_zone         = var.availabilityZoneToPlaceDatabase[count.index]
   vpc_security_group_ids    = [data.aws_security_group.get_db_sg.id]
   allocated_storage         = var.databaseStorageSize #number (10)
-  identifier                = var.rds-instance-name
+  identifier                = var.rds-instance-name[count.index]
   engine                    = var.databseEngineName         #mysql
   engine_version            = var.databaseEngineVersion     #"5.7"
   instance_class            = var.databaseInstanceClassType #"db.t2.micro"
@@ -41,5 +42,5 @@ module "createSecurityGroupRule" {
   securityRuleFromPort       = var.securityRuleFromPort[count.index]
   securityRuleToPort         = var.securityRuleToPort[count.index]
   #securityGroupRuleCidrBlock = data.aws_subnet.get_app_tier_subnet_cidr_block_for_db_security_group.cidr_block
-  inboundTrafficSourceSecurityGroupId = data.aws_security_group.getTomcatSecurityGroup.id
+  #inboundTrafficSourceSecurityGroupId = data.aws_security_group.getTomcatSecurityGroup.id
 }

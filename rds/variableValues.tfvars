@@ -3,9 +3,9 @@ subnet_group_name  = "tb_vpc_rds_infoepo_subnet_group"
 subnetGroupTagname = "tbVpcRdsInfoRepoSubnetGroup"
 
 #database instance variable values 
-availabilityZoneToPlaceDatabase = "us-east-1a"
+availabilityZoneToPlaceDatabase = ["us-east-1a", "us-east-1b"]
 databaseStorageSize             = 10 #number (10)
-rds-instance-name               = "info-repository"
+rds-instance-name               = ["active-rds-server","standby-rds-server"]
 databseEngineName               = "mysql"             #mysql
 databaseEngineVersion           = "5.7"               #"5.7"
 databaseInstanceClassType       = "db.t2.micro"       #"db.t2.micro"
@@ -24,6 +24,6 @@ securityGroupIdToAddRuleTo = ""
 securityRuleFromPort       = ["3306"]
 securityRuleToPort         = ["3306"]
 
-inboundTrafficSourceSecurityGroupId = ""
+#inboundTrafficSourceSecurityGroupId = ""
 
 

@@ -28,5 +28,5 @@ variable "securityRuleToPort" {}
 
 
 #variable "tomcatSecurityGroupName" {}
-variable "inboundTrafficSourceSecurityGroupId" {}
+#variable "inboundTrafficSourceSecurityGroupId" {}
 

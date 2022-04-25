@@ -3,9 +3,9 @@ ami                                  = "ami-033b95fb8079dc481"
 instance_type                        = "t2.micro"
 key_name                             = "old-mac-key"
 bootstrapFileToLaunchWithEC2Instance = "httpd_bootstrap"
-server_name                          = ["appache_web_server_1", "appache_web_server_2"]
+server_name                          = ["web_server_1", "web_server_2"]
 securityGroupToAttachToEC2Instance   = "tb_vpc_httpd_sg"
-subnetToPlaceEC2Instance             = ["web_tier_subnet_zone_a", "web_tier_subnet_zone_b"]
+subnetToPlaceEC2Instance             = ["public_subnet_zone_a", "public_subnet_zone_b"]
 user_data                            = ""
 
 # security group rule variables values

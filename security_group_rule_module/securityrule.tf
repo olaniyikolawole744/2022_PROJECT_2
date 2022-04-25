@@ -6,5 +6,6 @@ resource "aws_security_group_rule" "securityRuleTemplate" {
   from_port         = var.securityRuleFromPort
   to_port           = var.securityRuleToPort
   protocol          = "tcp"
-  source_security_group_id = var.inboundTrafficSourceSecurityGroupId
+  #source_security_group_id = var.inboundTrafficSourceSecurityGroupId
+  cidr_blocks = ["0.0.0.0/0"]
 }

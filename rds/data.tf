@@ -2,7 +2,7 @@
 data "aws_subnet" "get_subnet_ids_from_vpc_for_subnet_group_aza" {
   filter {
     name   = "tag:Name"
-    values = ["db_tier_subnet_zone_a"]
+    values = ["private_subnet_zone_a"]
   }
 }
 
@@ -10,7 +10,7 @@ data "aws_subnet" "get_subnet_ids_from_vpc_for_subnet_group_aza" {
 data "aws_subnet" "get_subnet_ids_from_vpc_for_subnet_group_azb" {
   filter {
     name   = "tag:Name"
-    values = ["db_tier_subnet_zone_b"]
+    values = ["private_subnet_zone_b"]
   }
 }
 
@@ -36,7 +36,7 @@ data "aws_security_group" "get_db_sg" {
 
 
 #====================================================================
-#Data source to fetch httpd security group for inbound source traffic
+#Data source to fetch tomcat security group for inbound source traffic
 data "aws_security_group" "getTomcatSecurityGroup" {
   filter {
     name   = "tag:Name"

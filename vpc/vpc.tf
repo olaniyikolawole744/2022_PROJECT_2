@@ -51,7 +51,7 @@ resource "aws_route_table" "tb_vpc_rt" {
 # Create subnets
 module "createSubnet" {
   source                 = "../subnet_module"
-  count                  = 6
+  count                  = 4
   vpcId                  = aws_vpc.tb_vpc.id
   subnetCidrBlock        = var.subnetCidrBlock[count.index]
   subnetAvailabilityZone = var.subnetAvailabilityZone[count.index]
@@ -68,7 +68,7 @@ resource "aws_route_table_association" "associateSubnetWithRouteTable" {
 
 # Create security group
 module "createSecurityGroup" {
-  count               = 4
+  count               = 5
   source              = "../security_group_module"
   sg_name             = var.sg_name[count.index]
   sg_description_main = var.sg_description_main[count.index]

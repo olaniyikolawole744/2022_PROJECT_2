@@ -10,15 +10,15 @@ data "aws_vpc" "get_vpc" {
 data "aws_subnet" "get_subnet_ids_from_vpc_for_subnet_group_aza" {
   filter {
     name   = "tag:Name"
-    values = ["web_tier_subnet_zone_a"]
+    values = ["public_subnet_zone_a"]
   }
 }
 
-#Data source to fetch subnet in availability zone c for subnet group 
+#Data source to fetch subnet in availability zone b for subnet group 
 data "aws_subnet" "get_subnet_ids_from_vpc_for_subnet_group_azb" {
   filter {
     name   = "tag:Name"
-    values = ["web_tier_subnet_zone_b"]
+    values = ["public_subnet_zone_b"]
   }
 }
 
@@ -33,14 +33,14 @@ data "aws_security_group" "getSecurityGroupToAttachToELB" {
 data "aws_instance" "getServerIdToRegisterWithTargetGroup_1" {
   filter {
     name   = "tag:Name"
-    values = ["appache_web_server_1"]
+    values = ["web_server_1"]
   }
 }
 
 data "aws_instance" "getServerIdToRegisterWithTargetGroup_2" {
   filter {
     name   = "tag:Name"
-    values = ["appache_web_server_2"]
+    values = ["web_server_2"]
   }
 }
 

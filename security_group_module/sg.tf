@@ -4,6 +4,8 @@ resource "aws_security_group" "sg_template" {
   description = var.sg_description_main
   vpc_id      = var.vpc_id
 
+  
+
   egress {
     from_port   = 0
     to_port     = 0

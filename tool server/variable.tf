@@ -12,9 +12,10 @@ variable "user_data" {}
 variable "securityGroupIdToAddRuleTo" {}
 variable "securityRuleFromPort" {}
 variable "securityRuleToPort" {}
-variable "inboundTrafficSourceSecurityGroupId" {}
+#variable "inboundTrafficSourceSecurityGroupId" {}
 
 
-variable "httpdSecurityGroupName" {}
-variable "elbSecurityGroupName" {}
+#variable "httpdSecurityGroupName" {}
+variable "toolServerSecurityGroupName" {}
+#variable "elbSecurityGroupName" {}
 

@@ -30,10 +30,10 @@ module "serverTemplate" {
 
 # Calling security rule module to create ingress  
 module "createSecurityGroupRule" {
-  count                               = length(var.securityRuleFromPort)
-  source                              = "../security_group_rule_module"
-  securityGroupIdToAddRuleTo          = data.aws_security_group.getHttpdSecurityGroupName.id
-  securityRuleFromPort                = var.securityRuleFromPort[count.index]
-  securityRuleToPort                  = var.securityRuleToPort[count.index]
-  inboundTrafficSourceSecurityGroupId = data.aws_security_group.getElbSecurityGroupName.id
+  count                      = length(var.securityRuleFromPort)
+  source                     = "../security_group_rule_module"
+  securityGroupIdToAddRuleTo = data.aws_security_group.getToolServerSecurityGroupName.id
+  securityRuleFromPort       = var.securityRuleFromPort[count.index]
+  securityRuleToPort         = var.securityRuleToPort[count.index]
+  #inboundTrafficSourceSecurityGroupId = data.aws_security_group.getElbSecurityGroupName.id
 }
