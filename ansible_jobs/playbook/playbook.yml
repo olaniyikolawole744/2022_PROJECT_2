@@ -1,4 +1,4 @@
-- hosts: all
+- hosts: tag_Name_web_server_*
   become: yes
   tasks:
   - name: Ping Machines
@@ -9,31 +9,115 @@
       path: /tmp/some_directory
       state: directory
       mode: '0755'
-
-  - name: Install packages
+  
+  - name: Install the latest version of Apache
     yum:
-      name: "{{ packages }}"
-    vars:
-      packages:
-        - git
-        - pip
-        - docker
+    name: httpd
+    state: latest
 
-  - name: Install boto package
-    pip:
-      name: "{{ packages2 }}"
-    vars:
-      packages:
-        - boto
+
+- hosts: tag_Name_app_tomcat_server
+  become: yes
+  tasks:
+  - name: Ping Machines
+    ansible.builtin.ping:
+
+  - name: Create a Directory on Machines If It Does Not Exist
+    ansible.builtin.file:
+      path: /tmp/some_directory
+      state: directory
+      mode: '0755'
+  
+  - name: Install Apache Tomcat10 using ansible
+    hosts: webserver
+    remote_user: ec2-user
+    become: true
+    tasks:
+    - name: Update the System Packages
+      yum:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Create a Tomcat User
+      user:
+        name: tomcat
+
+    - name: Create a Tomcat Group
+      group:
+        name: tomcat
+
+    - name: Install JAVA
+      apt:
+        name: default-jdk
+        state: present
+
+
+    - name: Create a Tomcat Directory
+      file:
+        path: /opt/tomcat10
+        owner: tomcat
+        group: tomcat
+        mode: 755
+        recurse: yes
+
+    - name: download & unarchive tomcat10 
+      unarchive:
+        src: https://mirrors.estointernet.in/apache/tomcat/tomcat-10/v10.0.4/bin/apache-tomcat- 10.0.4.tar.gz
+        dest: /opt/tomcat10
+        remote_src: yes
+        extra_opts: [--strip-components=1]
+
+    - name: Change ownership of tomcat directory
+      file:
+        path: /opt/tomcat10
+        owner: tomcat
+        group: tomcat
+        mode: "u+rwx,g+rx,o=rx"
+        recurse: yes
+        state: directory
+
+    - name: Copy Tomcat service from local to remote
+      copy:
+        src: /etc/tomcat.service
+        dest: /etc/systemd/system/
+        mode: 0755
+
+    - name: Start and Enable Tomcat 10 on sever
+      systemd:
+        name: tomcat
+        state: started
+        daemon_reload: true
+
+
+
+  #- name: Install packages
+   # yum:
+    #  name: "{{ packages }}"
+    #vars:
+    #  packages:
+     #   - git
+      #  - pip
+       # - docker
+
+#  - name: Install boto package
+ #   pip:
+  #    name: "{{ packages2 }}"
+   # vars:
+    #  packages:
+     #   - boto
       
-  - name: Start service docker, if not started
-    ansible.builtin.service:
-      name: docker
-      state: started
+ # - name: Start service docker, if not started
+  #  ansible.builtin.service:
+   #   name: docker
+    #  state: started
 
-  - name: clone a dockerfile repo
-    ansible.builtin.git:
-      repo: https://github.com/shegoj/2021-devopstrainingminiproject
-      dest: /tmp/
+  #- name: clone a dockerfile repo
+  #  ansible.builtin.git:
+   #   repo: https://github.com/shegoj/2021-devopstrainingminiproject
+    #  dest: /tmp/
   
   
+
+  #tag_Name_web_server_1
+  #tag_Name_web_server_2
+  #tag_Name_app_tomcat_server
