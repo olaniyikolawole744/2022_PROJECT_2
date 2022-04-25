@@ -30,7 +30,7 @@ pipeline {
 
         stage('PLAY ANSIBLE BOOK..') {
             steps { 
-            withCredentials([sshUserPrivateKey(credentialsId: 'd6554359-b6c2-404e-9998-02728e14be99', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
+            withCredentials([sshUserPrivateKey(credentialsId: '4f39828f-a5c4-4f5f-849d-af86244b6214', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
             sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --u $username --private-key $private_key ansible_jobs/playbook/playbook.yml -i ansible_jobs/inventory/hosts/ec2.py'
         }
             
