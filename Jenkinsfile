@@ -13,8 +13,8 @@ pipeline {
         stage('CREATE INFRASTRUCTURE') {
              steps {
                 sh 'ls'
-                sh 'chmod 755 destroy2.sh'
-                sh './destroy2.sh'
+                sh 'chmod 755 script2.sh'
+                sh './script2.sh'
                 }
         } 
 
@@ -29,10 +29,11 @@ pipeline {
 
 
         stage('PLAY ANSIBLE BOOK..') {
-            steps {     
-            withCredentials([sshUserPrivateKey(credentialsId: '554b9cec-008e-4236-aec9-ac5b71c618b6', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
+            steps { 
+            withCredentials([sshUserPrivateKey(credentialsId: '', keyFileVariable: 'private_key', usernameVariable: 'username')]) {
             sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --u $username --private-key $private_key ansible_jobs/playbook/playbook.yml -i ansible_jobs/inventory/hosts/ec2.py'
-            }
+        }
+            
           }
         }      
      }
