@@ -50,10 +50,10 @@ terraform validate
 terraform apply "-var-file=variableValues.tfvars" --auto-approve
 
 #CREATE DATABASE INSTANCE
-cd ../
-cd rds
-terraform init
-terraform fmt
-terraform validate
-terraform plan "-var-file=variableValues.tfvars"
-terraform apply "-var-file=variableValues.tfvars" --auto-approve
+#cd ../
+#cd rds
+#terraform init
+#terraform fmt
+#terraform validate
+#terraform plan "-var-file=variableValues.tfvars"
+#terraform apply "-var-file=variableValues.tfvars" --auto-approve

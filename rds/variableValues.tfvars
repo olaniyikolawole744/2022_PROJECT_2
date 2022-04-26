@@ -1,5 +1,5 @@
 #subnet group variable values
-subnet_group_name  = "tb_vpc_rds_infoepo_subnet_group"
+subnet_group_name  = "tb_vpc_rds_inforepo_subnet_group"
 subnetGroupTagname = "tbVpcRdsInfoRepoSubnetGroup"
 
 #database instance variable values 
