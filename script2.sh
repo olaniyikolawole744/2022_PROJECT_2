@@ -47,7 +47,7 @@ cd cloudfront
 terraform init
 terraform fmt
 terraform validate
-terraform apply "-var-file=variableValues.tfvars" --auto-approve
+terraform apply --auto-approve
 
 #CREATE DATABASE INSTANCE
 #cd ../
