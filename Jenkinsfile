@@ -13,7 +13,7 @@ pipeline {
         stage('CREATE INFRASTRUCTURE') {
              steps {
                 sh 'ls'
-                sh 'chmod 755 destroy.sh'
+                sh 'chmod 755 destroy2.sh'
                 sh './destroy2.sh'
                 }
         } 
