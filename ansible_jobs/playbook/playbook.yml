@@ -14,8 +14,8 @@
       name: httpd
       state: started
 
-  - name: Rename Original index.html to indextxt
-    ansible.builtin.command: mv /var/www/html/index.html  /var/www/html/index.txt
+  - name: Create index.html
+    ansible.builtin.command: touch /var/www/html/index.html  
   
   - name: Copy New index.html to /var/www/html/
     ansible.builtin.copy:
