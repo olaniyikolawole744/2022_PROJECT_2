@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sudo yum update -y
-sudo yum install httpd -y
-sudo systemctl start httpd.service
-sudo systemctl enable httpd.service
-sudo mv /var/www/html/index.html  /var/www/html/index.txt 
-sudo cp tmp/index.html /var/www/html/index.html
+#sudo yum update -y
+#sudo yum install httpd -y
+#sudo systemctl start httpd.service
+#sudo systemctl enable httpd.service
+#sudo mv /var/www/html/index.html  /var/www/html/index.txt 
+#sudo cp tmp/index.html /var/www/html/index.html
