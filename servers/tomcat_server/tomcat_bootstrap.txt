@@ -1,58 +1,8 @@
 #!/bin/bash
+sudo yum install java -y
+sudo wget https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.78/bin/apache-tomcat-8.5.78.tar.gz  /opt
+tar -xvzf apache-tomcat-8.5.78.tar.gz
+sudo chmod +x apache-tomcat-8.5.78/bin/startup.sh 
+sudo apache-tomcat-8.5.78/bin/./startup.sh
+#sudo apache-tomcat-8.5.78/bin/./shutdown.sh 
 
-#install python 3
-#sudo yum update -y
-#sudo yum install python3 -y
-
-#Download Tomcat
-sudo wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
-
-#Untar Tomcat
-sudo tar -xvf /root/apache-tomcat-9.0.41.tar.gz
-
-#Rename Tomcat
-sudo mv apache-tomcat-9.0.41 tomcat9
-
-#Create Tomcat User
-sudo useradd -r tomcat
-
-#Give Tomcat Permission
-sudo chown -R tomcat:tomcat /usr/local/tomcat9
-
-#Create Tomcat Service File
-sudo tee /etc/systemd/system/tomcat.service<<EOF
-[Unit]
-Description=Tomcat Server
-After=syslog.target network.target
-
-[Service]
-Type=forking
-User=tomcat
-Group=tomcat
-
-Environment=CATALINA_HOME=/usr/local/tomcat9
-Environment=CATALINA_BASE=/usr/local/tomcat9
-Environment=CATALINA_PID=/usr/local/tomcat9/temp/tomcat.pid
-
-ExecStart=/usr/local/tomcat9/bin/catalina.sh start
-ExecStop=/usr/local/tomcat9/bin/catalina.sh stop
-
-RestartSec=12
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-
-#Reload tomcat service
-sudo systemctl daemon-reload
-
-#Restart/Start tomcat service
-sudo systemctl start tomcat
-
-#Check tomcat service status
-systemctl status tomcat.service
-
-
-#Finally we check on our browser the Tomcat Server GUI via http://[AWS EC2 Public IP]:8080
