@@ -17,20 +17,38 @@
   - name: Create index.html
     ansible.builtin.command: touch /var/www/html/index.html  
   
-  - name: Copy New index.html to /var/www/html/
-    ansible.builtin.copy:
-      src: tmp/index.html
-      dest: /var/www/html/index.html
-
+  - name: Insert/Update HTML surrounded by custom markers after <body> line
+    blockinfile:
+      path: /var/www/html/index.html
+      block: 
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Basic Web Page</title>
+        </head>
+        <body>
+        <p> HELLO WORLD THIS OS SERVER 1 (ONE) </p>
+        </body>
+        </html>
+        
   
 - hosts: tag_Name_web_server_2
   become: yes
   tasks:
-  - name: Write Unique Content Inside Web Server 2
-    ansible.builtin.lineinfile:
+  
+  - name: Insert/Update HTML surrounded by custom markers after <body> line
+    blockinfile:
       path: /var/www/html/index.html
-      regexp: '<p>my name is machine 1, watch out for machine 2</p>'
-      line: <p>my name is machine 2, watch out for machine 3</p>
+      block: 
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>Basic Web Page</title>
+        </head>
+        <body>
+        <p> HELLO WORLD THIS IS SERVER 2 (TWO) </p>
+        </body>
+        </html>
 
 
       
